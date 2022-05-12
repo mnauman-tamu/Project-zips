@@ -1,0 +1,73 @@
+irmov 1 %eax
+irmov 128 %rsp
+rrmov %rsp %rbp
+
+irmov 1 %ebx
+
+irmov 3 %ecx
+rmmov %ecx %rbp
+
+irmov 2 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 4 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 1 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+
+
+irmov 0 %ebx
+
+irmov 6 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 5 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 6 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 7 %ecx
+add %ebx %rbp
+rmmov %ecx %rbp
+
+irmov 0 %ebx
+
+irmov 4 %eax
+irmov 1 %ecx
+
+rrmov %rsp %ecx
+rrmov %rsp %ebx
+
+add %eax %ecx
+
+add %ebx %ebx
+add %ebx %ecx
+
+irmov 8 %edx
+add %rsp %edx
+add %ebx %edx
+
+mrmov %ecx %eax
+mrmov %ebx %ebx
+add %ebx %eax
+
+rmmov %eax %edx
+
+irmov 4 %eax
+
+add %ecx %ebx
+sub %ebx %eax
+
+je 31
+jmp 1E
+
+halt

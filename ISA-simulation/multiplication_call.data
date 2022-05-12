@@ -1,0 +1,111 @@
+irmov $1 %eax
+irmov $128 %esp
+rrmov %esp %ebp
+
+irmov $1 %edi
+
+irmov $3 %esi
+rmmov %esi (%ebp)
+
+irmov $2 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+irmov $4 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+irmov $1 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+###########
+
+irmov $0 %edi
+
+irmov $6 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+irmov $5 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+irmov $6 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+irmov $7 %esi
+add %edi %ebp
+rmmov %esi (%ebp)
+
+
+
+irmov $0 %edi
+irmov $0 %esi
+rrmov %esp %ebp
+irmov $8 %eax
+add %eax %ebp
+
+call Multiplication
+halt
+
+Multiplication:
+    irmov $4 %eax
+    subl %edi %eax
+    jz End
+    jmp Loop
+
+Loop:
+    irmov $2 %eax
+    subl %esi %eax
+    jz MulInc
+
+    rrmov %esp %eax
+    add %edi %eax
+    mrmov (%eax) %eax
+
+    rrmov %esp %ecx
+    irmov $4 %ebx
+    add %ebx %ecx
+    add %esi %ecx
+    mrmov (%ecx) %ecx
+
+    rrmov %ecx %edx
+    mul %eax %edx # edx holds first part
+
+    irmov $1 %ecx
+    rrmov %esp %eax
+    add %edi %eax
+    add %ecx %eax # adds 1 for A[1] or A[3]
+    mrmov (%eax) %eax
+
+    rrmov %esp %ecx
+    irmov $4 %ebx
+    add %ebx %ecx
+    add %esi %ecx
+    irmov $2 %ebx # adds 2 for B[2] or B[3]
+    add %ebx %ecx
+    mrmov (%ecx) %ecx
+
+    mul %eax %ecx
+
+    add %ecx %edx
+    rmmov %edx (%ebp) # addition
+    irmov $1 %eax
+    add %eax %ebp
+
+    add %eax %esi
+    jmp Loop
+
+
+MulInc:
+    irmov $0 %eax
+    rrmov %eax %esi
+    irmov $2 %eax
+    add %eax %edi
+    jmp Multiplication
+
+
+End:
+    ret

@@ -1,0 +1,29 @@
+irmov	FE -> %ebp					70 5 0 FE
+irmov	F7 -> %esp					70 4 0 F7
+irmov 	FE -> %ecx					70 2 0 FE
+mrmov 	%ecx -> %eax				40 0 2 00
+irmov 	FA -> %ecx 					70 2 0 FA
+mrmov 	%ecx -> %ebx				40 1 2 00
+sub		%eax + %ebx					04 0 1 00
+push	%ebx						B1 1 0 01
+
+irmov 	FD -> %ecx					70 2 0 FD
+mrmov 	%ecx -> %eax				40 0 2 00
+irmov 	F9 -> %ecx 					70 2 0 F9
+mrmov 	%ecx -> %ebx				40 1 2 00
+sub		%eax + %ebx					04 0 1 00
+push	%ebx						B1 1 0 01
+
+irmov 	FC -> %ecx					70 2 0 FC
+mrmov 	%ecx -> %eax				40 0 2 00
+irmov 	F8 -> %ecx 					70 2 0 F8
+mrmov 	%ecx -> %ebx				40 1 2 00
+sub		%eax + %ebx					04 0 1 00
+push	%ebx						B1 1 0 01
+
+irmov 	FB -> %ecx					70 2 0 FB
+mrmov 	%ecx -> %eax				40 0 2 00
+irmov 	F7 -> %ecx 					70 2 0 F7
+mrmov 	%ecx -> %ebx				40 1 2 00
+sub		%eax + %ebx					04 0 1 00
+push	%ebx						B1 1 0 01

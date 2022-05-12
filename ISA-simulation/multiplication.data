@@ -1,0 +1,109 @@
+irmov 1 %eax
+irmov 128 %rsp
+rrmov %rsp %rbp
+
+irmov 1 %edx
+
+irmov 3 %ecx
+rmmov %ecx %rbp
+
+irmov 2 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+irmov 4 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+irmov 1 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+###########
+
+irmov 0 %edx
+
+irmov 6 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+irmov 5 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+irmov 6 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+irmov 7 %ecx
+add %edx %rbp
+rmmov %ecx %rbp
+
+
+
+irmov 0 %edx
+irmov 0 %ecx
+rrmov %rsp %rbp
+irmov 8 %eax
+add %eax %rbp
+
+Multiplication:
+    irmov 4 %eax
+    subl %edx %eax
+    je End
+    jmp Loop
+
+Loop:
+    irmov 2 %eax
+    subl %ecx %eax
+    je MulInc
+
+    rrmov %rsp %eax
+    add %edx %eax
+    mrmov %eax %eax
+
+    rrmov %rsp %ecx
+    irmov 4 %ebx
+    add %ebx %ecx
+    add %ecx %ecx
+    mrmov %ecx %ecx
+
+    rrmov %ecx %edx
+    mul %eax %edx # edx holds first part
+
+    irmov 1 %ecx
+    rrmov %rsp %eax
+    add %edx %eax
+    add %ecx %eax # adds 1 for A[1] or A[3]
+    mrmov %eax %eax
+
+    rrmov %rsp %ecx
+    irmov 4 %ebx
+    add %ebx %ecx
+    add %ecx %ecx
+    irmov 2 %ebx # adds 2 for B[2] or B[3]
+    add %ebx %ecx
+    mrmov %ecx %ecx
+
+    mul %eax %ecx
+
+    add %ecx %edx
+    rmmov %edx %rbp # addition
+    irmov 1 %eax
+    add %eax %rbp
+
+    add %eax %ecx
+    jmp Loop
+
+
+MulInc:
+    irmov 0 %eax
+    rrmov %eax %ecx
+    irmov 2 %eax
+    add %eax %edx
+    jmp Multiplication
+
+
+End:
+    halt
+    #have to add call/ret

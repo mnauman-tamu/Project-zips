@@ -1,0 +1,57 @@
+Main:
+	#*******Setting up base and stack pointer, filling stack 
+	#		with matrix values ***********
+	irmovl $0xFC, %esp
+	irmovl $0xFE, %ebp
+	irmovl $0x05, %eax
+	pushl %eax
+	irmovl $0x02, %eax
+	pushl %eax
+	irmovl $0x04, %eax
+	pushl %eax
+	irmovl $0x03, %eax
+	pushl %eax
+	irmovl $0x01, %eax
+	pushl %eax
+	irmovl $0x07, %eax
+	pushl %eax
+	irmovl $0x09, %eax
+	pushl %eax
+	irmovl $0x02, %eax
+	pushl %eax
+	
+	#Add first element and push to stack
+	irmovl $0xF8, %ecx
+	mrmovl (%ecx), %eax
+	irmovl $0xe8, %ecx
+	mrmovl (%ecx), %ebx
+	addl %eax, %ebx
+	pushl %ebx
+	
+	
+	#Add second element and push to stack
+	irmovl $0xF4, %ecx
+	mrmovl (%ecx), %eax
+	irmovl $0xe4, %ecx
+	mrmovl (%ecx), %ebx
+	addl %eax, %ebx
+	pushl %ebx
+	
+	
+	#Add third element and push to stack
+	irmovl $0xF0, %ecx
+	mrmovl (%ecx), %eax
+	irmovl $0xe0, %ecx
+	mrmovl (%ecx), %ebx
+	addl %eax, %ebx
+	pushl %ebx
+
+	
+	#Add fourth element and push to stack
+	irmovl $0xec, %ecx
+	mrmovl (%ecx), %eax
+	irmovl $0xdc, %ecx
+	mrmovl (%ecx), %ebx
+	addl %eax, %ebx
+	pushl %ebx
+	
